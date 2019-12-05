@@ -15,7 +15,8 @@ public class KnightsTour {
 
         if (checkValidity()) {
 
-            throw new NullPointerException("bad");
+            //throw new NullPointerException("bad");
+            System.out.print("bad");
 
         }
 
