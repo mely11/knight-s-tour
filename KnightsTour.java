@@ -41,6 +41,8 @@ public class KnightsTour {
     // algorithms to find a knight's tour
 
 
+    BaseCases bc = new BaseCases();
+
     /**
      * Given a 3-by-m board (where m >= 7 or m == 4),
      * find a knight's tour on that chessboard with a divide-and-conquer algorithms

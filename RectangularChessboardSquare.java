@@ -5,16 +5,12 @@ public class RectangularChessboardSquare {
 
     int x;
     int y;
-    RectangularChessboard board;
 
 
-    RectangularChessboardSquare(int x, int y, RectangularChessboard board) {
+    RectangularChessboardSquare(int x, int y) {
 
         this.x = x;
         this.y = y;
-        this.board = board;
-
-
 
     }
 
@@ -23,9 +19,23 @@ public class RectangularChessboardSquare {
      * Checks if the given square is actually on the chessboard.
      * @return
      */
-    private boolean checkValidity() {
+    private boolean checkValidity(RectangularChessboard board) {
 
         return true;
+
+    }
+
+
+
+    public static RectangularChessboardSquare[] tourBuilder(int[][] arr) {
+
+        int n = arr.length;
+        RectangularChessboardSquare[] output = new RectangularChessboardSquare[n];
+        for (int i = 0; i < n; i++) {
+            output[i] = new RectangularChessboardSquare(arr[i][0], arr[i][1]);
+        }
+
+        return output;
 
     }
 
