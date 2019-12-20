@@ -1,82 +1,132 @@
+import javafx.util.Pair;
+
+import java.util.ArrayList;
+
 public class KnightsTour {
 
-    RectangularChessboard board;
-    RectangularChessboardSquare[] tour;
+    private int n, m;
+    private int[][] tour;
 
-    /**
-     * Represents a knight's tour on a given board as a list of squares the knight visits on the board
-     * @param board
-     * @param tour
-     */
-    KnightsTour(RectangularChessboard board, RectangularChessboardSquare[] tour){
 
-        this.board = board;
+    public KnightsTour(int n, int m, int[][] tour) {
+        this.n = n;
+        this.m = m;
         this.tour = tour;
-
-        if (checkValidity()) {
-
-            //throw new NullPointerException("bad");
-            System.out.print("bad");
-
+        if (!checkValidity()) {
+            System.out.print("This knight's tour isn't actually a knight's tour!");
         }
 
     }
 
-    /**
-     * Checks if the given knight's tour is indeed a valid knight's tour
-     * -- every square on the chessboard is valid, every square on the chessboard is visited once,
-     * and every two adjacent squares on the tour are a knight's move away from each other.
-     * @return
-     */
-    private boolean checkValidity() {
+    public int getN() {
+        return n;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public int[][] getTour() {
+        return tour;
+    }
+
+
+    public boolean checkValidity() {
+
+
+
+        for (int i = 0; i < getN() * getM()-1; i++) {
+
+            if (!(Math.abs(getTour()[i][0] - getTour()[i + 1][0]) == 1 && Math.abs(getTour()[i][1] - getTour()[i + 1][1]) == 2) || !(Math.abs(getTour()[i][0] - getTour()[i + 1][0]) == 2 && Math.abs(getTour()[i][1] - getTour()[i + 1][1]) == 1)) {
+                return false;
+            }
+        }
+
+        //TODO: Have other conditions in here too, like checking if each thing is in here exactly once.
+
+
 
         return true;
+    }
 
+
+//---------------------------------------------------
+    // The following methods will likely be necessary to code some of the combination/assembly algorithms.
+    // I don't know for sure though.
+
+
+    //TODO: Implement an algorithm here that reverses a given knight's tour -- that is, returns the tour, but backwards.
+    public KnightsTour getReversed() {
+
+        return null;
 
     }
 
 
-    // defining a knight's tour object
-    // ----------------------------------------------------
-    // algorithms to find a knight's tour
+    //TODO: Implement an algorithm here that shifts a given knight's tour n spaces down and m spaces over
+    public KnightsTour getTranslated(int dn, int dm) {
+
+        return null;
+    }
+
+    //TODO: Implement an algorithm here that rotates a knight's tour by 90 degrees
+    public KnightsTour getRotated() {
+
+        return null;
+    }
+
+    //TODO: Implement an algorithm here that reflects a knight's tour diagonally
+    public KnightsTour getReflected() {
+
+        return null;
+
+    }
+
+    //-------------------------
 
 
-    BaseCases bc = new BaseCases();
+    public static KnightsTour LinWei3(int m) {
 
-    /**
-     * Given a 3-by-m board (where m >= 7 or m == 4),
-     * find a knight's tour on that chessboard with a divide-and-conquer algorithms
-     * @param board
-     * @return
-     */
-    public static KnightsTour findTour3(RectangularChessboard board){
+        BaseCases bc = new BaseCases();
 
-        if (board.getHeight() != 3 || (board.getLength() < 7 && board.getLength() != 4)) {
-
-            return null;
+        if (m < 11) {
+            return bc.BCASE[3][m];
+        } else {
+            return LinWei3(m-4).combine3(LinWei3(4));
         }
+    }
 
 
+    //TODO: Implement code here that combines knight's tours of height 3; will require
+    public KnightsTour combine3(KnightsTour k) {
+
+
+
+        return k;
+
+    };
+
+
+
+    //-----------------------------------------
+
+    //TODO: This code.
+    public static KnightsTour LinWei5ormore(int n, int m) {
+
+
+        // Divide the chessboard into 4 quadrants, making sure that the top-left one is the only one with an odd dimension.
+        // Find knight's tours for each of them.
+        // Combine the knight's tours as shown on my brainstorming sheet. Remember to reflect the bottom-left tour.
 
 
         return null;
 
 
+
     }
 
+    //--------------------------------------------
 
-    /**
-     * The "assembly" step of our divide-and-conquer algorithm --
-     * combines a 3-by-k knight's tour (with k >= 7) with a 3-by-4 knights tour
-     * to create a 3-by-(k+4) knight's tour.
-     * @return
-     */
-    public KnightsTour combine3(KnightsTour k, KnightsTour four) {
 
-        return null;
-    }
 
 }
-
-
-
